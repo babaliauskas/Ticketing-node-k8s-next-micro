@@ -8,6 +8,8 @@ import {
 } from "@babaliauskas-tickets/common";
 import { createTicketRouter } from "./routes/new";
 import { showTicketRouter } from "./routes/show";
+import { getAllTicketsRouter } from "./routes/getAll";
+import { updateTicket } from "./routes/update";
 
 const app = express();
 app.set("trust proxy", true);
@@ -23,6 +25,8 @@ app.use(currentUser);
 
 app.use(createTicketRouter);
 app.use(showTicketRouter);
+app.use(getAllTicketsRouter);
+app.use(updateTicket);
 
 app.all("*", (req: Request, res: Response, next: NextFunction) => {
   next(new NotFoundError());
